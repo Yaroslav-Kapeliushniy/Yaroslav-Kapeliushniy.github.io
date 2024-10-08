@@ -5,6 +5,13 @@ FROM python:3.10-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Install necessary system packages for building dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create working directory
 WORKDIR /app
 
